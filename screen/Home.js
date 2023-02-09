@@ -9,7 +9,6 @@ import {
   Text,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-// import { Header } from 'react-navigation-stack';
 import { FontAwesome5 } from "@expo/vector-icons";
 import Category from "./components/Home/Category";
 
@@ -19,6 +18,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: "rgba(230,230,240,1)" }}>
+        {/* Top navigation bar view */}
         <View
           style={{ height: startHeaderHeight, backgroundColor: "transparent" }}
         >
@@ -38,6 +38,7 @@ const HomeScreen = () => {
             />
           </View>
         </View>
+        {/* Page content */}
         <ScrollView style={styles.scrollView}>
           <View style={{ paddingTop: 20 }}>
             <Text style={styles.categoryName}>You May Like</Text>
