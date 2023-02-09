@@ -1,18 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
 
-export default function ChatScreen(){
-    return (
-      <View style={styles.container}>
-        <Text>Chat</Text>
-      </View>
-    );
-  }
+function ChatScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Chat</Text>
+    </View>
+  );
+}
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
+export default ChatScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

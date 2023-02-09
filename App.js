@@ -3,9 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { createStackNavigator } from '@react-navigation/stack';
-
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+import "./src/api"; // Firebase API configuration
 
 import HomeScreen from "./screen/Home";
 import ChatScreen from "./screen/Chat";
@@ -13,6 +11,10 @@ import BasketScreen from "./screen/Basket";
 import ProfileScreen from "./screen/Profile";
 import RegisterScreen from "./screen/Register";
 import LoginScreen from "./screen/Login";
+
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => (
   <Tab.Navigator>
