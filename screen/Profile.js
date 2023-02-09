@@ -1,6 +1,6 @@
-import React, { Component, useState } from "react";
-import { StyleSheet, TextInput, Button, Text, View } from "react-native";
-import "../src/api"; // Import of the Firebase API configuration file
+import React from "react";
+import { StyleSheet, View } from "react-native";
+
 
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './Login';
