@@ -11,6 +11,9 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Category from "./components/Home/Category";
+import { initializeApp } from "firebase/app";
+import { getDatabase, onValue, ref } from "firebase/database";
+
 
 const HomeScreen = () => {
   const [startHeaderHeight, setStartHeaderHeight] = useState(80);

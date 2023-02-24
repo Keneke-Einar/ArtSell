@@ -1,11 +1,8 @@
 import { StyleSheet, Text, TextInput, Button, View } from "react-native";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Formik } from "formik";
-import HomeScreen from "./Home";
 
-function RegisterScreen({ navigation }) {
-  const auth = getAuth();
-
+function RegisterScreen({ navigation, setUserToken }) {
   return (
     <View style={styles.container}>
       <Text>Registration</Text>
@@ -14,9 +11,9 @@ function RegisterScreen({ navigation }) {
         onSubmit={(values) =>
           createUserWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
-              // const user = userCredential.user;
               const userToken = userCredential.user.uid;
-              navigation.navigate('Home', {screen: HomeScreen});
+              setUserToken(userToken); // set userToken state
+              navigation.navigate("Home", { userToken }); // navigate to HomeScreen and pass userToken as parameter
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -47,6 +44,8 @@ function RegisterScreen({ navigation }) {
     </View>
   );
 }
+
+const auth = getAuth();
 
 export default RegisterScreen;
 
