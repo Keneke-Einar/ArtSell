@@ -3,18 +3,13 @@ import { StyleSheet, View } from "react-native";
 
 
 import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from './Login';
-import RegisterScreen from './Register.js';
 
 const Stack = createStackNavigator();
 
 const ProfileScreen = () => {
   return (
     <View style={styles.container}>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-      </Stack.Navigator>
+      
     </View>
   );
 };
