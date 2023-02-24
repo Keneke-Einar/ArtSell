@@ -3,7 +3,6 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Formik } from "formik";
 
 function LoginScreen({ navigation, setUserToken }) {
-
   return (
     <View style={styles.container}>
       <Text>Login</Text>

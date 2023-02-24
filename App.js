@@ -1,10 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import "./src/api"; // Firebase API configuration
+import { getAuth, signOut } from "firebase/auth";
 
 import HomeScreen from "./screen/Home";
 import ChatScreen from "./screen/Chat";
@@ -18,6 +19,17 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [userToken, setUserToken] = useState(null);
+
+  const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        setUserToken(null);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <NavigationContainer>
@@ -65,7 +77,9 @@ export default function App() {
           <Tab.Screen
             name="Profile"
             component={ProfileScreen}
-            options={{
+            initialParams={{ userToken: userToken }}
+            options={({ navigation }) => ({
+              // Tab Icon
               tabBarIcon: ({ focused, color }) => (
                 <FontAwesome5
                   name={focused ? "user" : "user"}
@@ -73,21 +87,28 @@ export default function App() {
                   color={focused ? color : "tintColor"}
                 />
               ),
-            }}
+              // Logout Button
+              headerRight: () => (
+                <Button title="Logout" onPress={handleLogout} />
+              ),
+            })}
           />
         </Tab.Navigator>
       ) : (
-      <Stack.Navigator>
-        <Stack.Screen name="Login">
-          {({ navigation }) => (
-            <LoginScreen setUserToken={setUserToken} navigation={navigation} />
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="Register" component={RegisterScreen} />
-      </Stack.Navigator>
-    )}
-  </NavigationContainer>
-);
+        <Stack.Navigator>
+          <Stack.Screen name="Login">
+            {({ navigation }) => (
+              <LoginScreen
+                setUserToken={setUserToken}
+                navigation={navigation}
+              />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name="Register" component={RegisterScreen} />
+        </Stack.Navigator>
+      )}
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({

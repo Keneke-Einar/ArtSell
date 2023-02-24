@@ -1,18 +1,18 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 
-
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
-const ProfileScreen = () => {
+function ProfileScreen({ }) {
+
   return (
     <View style={styles.container}>
-      
+      <Text>Profile</Text>
     </View>
   );
-};
+}
 
 export default ProfileScreen;
 
