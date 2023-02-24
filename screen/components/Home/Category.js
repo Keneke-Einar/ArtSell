@@ -3,6 +3,7 @@ import { View, Image, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const Category = (props) => {
+
     return (
         <View style={ styles.container }>
             <View style={ styles.border }>

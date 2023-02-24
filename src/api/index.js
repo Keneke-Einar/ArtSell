@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getDatabase, ref, set } from "firebase/database";
 
 import {
@@ -21,10 +21,14 @@ const firebaseConfig = {
   appId: FIREBASE_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+let app;
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+}
+
+const db = getDatabase(app);
 
 function addNewPost(postId, posTitle, postAuthor, postPrice, postPictureURL) {
-  const db = getDatabase();
   const refNewPost = ref(db, "posts/" + postId);
 
   set(refNewPost, {
@@ -35,10 +39,14 @@ function addNewPost(postId, posTitle, postAuthor, postPrice, postPictureURL) {
   });
 }
 
-addNewPost(
-  "1",
-  "Ring Of Mordor",
-  "Someone",
-  "400",
-  "https://static.wikia.nocookie.net/lotr/images/f/fb/3ifu.jpg/revision/latest?cb=20130423140938&path-prefix=ru"
-);
+function readPostData(postId) {
+  const postRef = ref(db, "posts/" + postId);
+
+  onValue(postRef, (snapshot) => {
+    const postData = snapshot.val();
+    const { title, author, price, picture } = postData;
+    const post = { title, author, price, picture };
+    console.log(post);
+  });
+}
+export { addNewPost, readPostData };
